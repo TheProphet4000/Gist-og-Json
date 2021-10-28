@@ -6,20 +6,21 @@
 <p1 id = t> hej </p1>
 
 <script>
-var jsonFile = 'https://gist.githubusercontent.com/TheProphet4000/8b71d17fa24441b555605dd33bc52643/raw/638ec87d6c23ad9f61d69da46515ba0c18900583/40k.json';
 
-//kan ikke få hentet data fra min gist??
-//JSON er valideret, og ligger på gist
+const data = new XMLHttpRequest()
+data.open("GET",'https://gist.githubusercontent.com/TheProphet4000/8b71d17fa24441b555605dd33bc52643/raw/638ec87d6c23ad9f61d69da46515ba0c18900583/40k.json')
+data.onload = function() {
+let list = JSON.parse(this.responseText)
 
-let list = JSON.parse(jsonFile);
-
+//-------------------text-------------------------------------------------------------------------------------------------------------------------------------
 let tekst = "Brothers, we have " + list.hold + " " + list.soldater + " squads, will invade the systems called " + list.systemerInvaderes[0] + " and " + list.systemerInvaderes[1]+ ". " ;
 let moral = " -FOR THE EMPIROR OF MANKIND!!- ";
 
 document.getElementById('t').innerHTML = tekst + moral;
-console.log(tekst);
-console.log(moral);
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------
+}
 
+data.send()
 </script>
 </body>
 </html>
